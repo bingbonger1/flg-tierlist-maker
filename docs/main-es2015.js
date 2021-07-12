@@ -917,10 +917,10 @@ ToolbarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
 /*!************************************!*\
   !*** ./src/assets/characters.json ***!
   \************************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, default */
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("[\"Anzia Viren\",\"Anna-Marie Lewis\",\"Chloe Minah\",\"7 Day Warning\",\"Yabai Klara\",\"Pecorine\",\"Just Doing My Job\",\"Mildly Goth Chick\",\"Biker Slut Reiko\",\"Venmar\",\"Sabrina\",\"Tou-kun\",\"Henry Jaullet\",\"Explorer\",\"A Blonde Stud\",\"Synapsis\",\"Pound Puppies\",\"Sneed\",\"Jailbait Rock\",\"Solomon\",\"Madison Harlow\",\"Laughingstock\",\"Halo 3 Rat\",\"Bandicute\"]");
+module.exports = JSON.parse("[\"Anzia Viren\",\"Anna-Marie Lewis\",\"Chloe Minah\",\"7 Day Warning\",\"Yabai Klara\",\"Pecorine\",\"Just Doing My Job\",\"Mildly Goth Chick\",\"Biker Slut Reiko\",\"Venmar\",\"Sabrina\",\"Tou-kun\",\"Henry Jaullet\",\"Explorer\",\"A Blonde Stud\",\"Synapsis\",\"Pound Puppies\",\"Sneed\",\"Jailbait Rock\",\"Solomon\",\"Madison Harlow\",\"Laughingstock\",\"Halo 3 Rat\",\"Bandicute\",\"Zenith of Sin\",\"Pawn Queen\",\"Plap Queen\",\"Pedobait\"]");
 
 /***/ }),
 
