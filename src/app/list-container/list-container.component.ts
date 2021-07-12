@@ -83,6 +83,13 @@ export class ListContainerComponent implements OnInit {
     tier.name = this.openTierNameDialog(tier.name);
   }
 
+  clickDeleteTierButton(tier: Tier){
+    this.tiers.splice(this.tiers.indexOf(tier),1);
+    for(let characterName of tier.characters){
+      this.unsortedCharacters.push(characterName);
+    }
+  }
+
   openColorDialog(currentColor: string): string{
     return prompt("New color (in hex)",currentColor);
     /*

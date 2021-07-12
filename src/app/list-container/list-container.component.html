@@ -47,14 +47,34 @@
                 </mat-grid-list>
                 <button mat-button 
                 matTooltip="Rename" 
-                (click)="clickChangeTierNameButton(tier)">
+                (click)="clickChangeTierNameButton(tier)"
+                color="accent">
                     <mat-icon>title</mat-icon>
                 </button>
                 <button mat-button 
                 matTooltip="Change color" 
                 (click)="clickChangeColorButton(tier)"
+                color="accent"
                 >
                     <mat-icon>color_lens</mat-icon>
+                </button>
+                <button mat-button 
+                matTooltip="Delete" 
+                (click)="clickDeleteTierButton(tier)"
+                color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-button 
+                matTooltip="Move up" 
+                disabled
+                color="warn">
+                    <mat-icon>expand_less</mat-icon>
+                </button>
+                <button mat-button 
+                matTooltip="Move down" 
+                disabled
+                color="warn">
+                <mat-icon>expand_more</mat-icon>
                 </button>
             </div>
         </div>
