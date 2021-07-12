@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Tier } from '../classes/tier';
+import defaultCharacters from '../../assets/characters.json';
 
 @Component({
   selector: 'app-list-container',
@@ -9,6 +10,7 @@ import { Tier } from '../classes/tier';
 })
 export class ListContainerComponent implements OnInit {
 
+  gridBreakpoint = 1;
   tiers = [
     new Tier("S tier"),
     new Tier("A tier"),
@@ -17,41 +19,24 @@ export class ListContainerComponent implements OnInit {
     new Tier("D tier"),
     new Tier("F tier")
   ]
-  selectedCharacters = [
-    'Anzia Viren'
-
-  ];
-
-  unsortedCharacters = [
-  'Anna-Marie Lewis', 
-  'Chloe Minah', 
-  '7 Day Warning',
-  'Yabai Klara',
-  'Pecorine',
-  'Just Doing My Job',
-  'Mildly Goth Chick',
-  'Biker Slut Reiko',
-  'Venmar',
-  'Sabrina',
-  'Tou-kun',
-  'Henry Jaullet',
-  'Explorer',
-  'A Blonde Stud',
-  'Synapsis',
-  'Pound Puppies',
-  'Sneed',
-  'Jailbait Rock',
-  'Solomon',
-  'Madison Harlow',
-  'Laughingstock',
-  'Halo 3 Rat',
-  'Bandicute'
-
-  ];
+  unsortedCharacters = defaultCharacters;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.setGridBreakPoint(window.innerWidth);
+  }
+
+  onResize(event) {
+    this.setGridBreakPoint(event.target.innerWidth);
+  }
+
+  setGridBreakPoint(windowSize){
+    //This is ugly as fuck, but apparently gives us the fastest performance in every browser except Internet Explorer, but they can go fuck themselves. You're on 4chan, you don't use that
+    if(windowSize <= 1000) this.gridBreakpoint = 3; else
+    if(windowSize <= 1500) this.gridBreakpoint = 9;
+    else this.gridBreakpoint = 15;
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -75,11 +60,15 @@ export class ListContainerComponent implements OnInit {
   clickAddCharacter(){
     var characterName = prompt("Character name?", '')
     if (characterName != null || characterName.length > 2){
-      this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
+      this.addCharacter(characterName);
     }
     else{
-      alert("Invalid character name.")
+      alert("Invalid character name.");
     }
+  }
+
+  addCharacter(characterName: string){
+    this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
   }
 
 }

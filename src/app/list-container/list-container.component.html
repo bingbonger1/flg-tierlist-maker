@@ -1,32 +1,61 @@
 <div>
 
-    <button mat-button matTooltip="Add Tier" (click)="clickAddTier()"><mat-icon>add</mat-icon></button>
+    <button mat-button 
+    matTooltip="Add Tier" 
+    (click)="clickAddTier()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Reset Everything" 
+    disabled>
+        <mat-icon> layers_clear</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Save" 
+    disabled>
+        <mat-icon> save</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Export to image" 
+    disabled>
+        <mat-icon>image</mat-icon>
+    </button>
     <div cdkDropListGroup>
-        <div class="example-container" *ngFor="let tier of tiers">
+        <div class="tier-container" *ngFor="let tier of tiers">
           <h2>{{tier.name}}</h2>
       
-          <div
+          <mat-grid-list
+            [cols]="gridBreakpoint"
             cdkDropList
+            rowHeight="1:1"
             [cdkDropListData]="tier.characters"
-            class="example-list"
+            class="tier-list"
             (cdkDropListDropped)="drop($event)">
-            <app-list-item *ngFor="let character of tier.characters" cdkDrag [character]="character"></app-list-item>
-          </div>
+            <mat-grid-tile *ngFor="let character of tier.characters"  cdkDrag>
+                <app-list-item [character]="character"></app-list-item>
+            </mat-grid-tile>
+        </mat-grid-list>
         </div>
       
-        <mat-expansion-panel>
+        <mat-expansion-panel
+        [expanded]="true">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Unsorted Characters
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div
+                <mat-grid-list
+                [cols]="gridBreakpoint"
+                (window:resize)="onResize($event)"
+                rowHeight="1:1"
                 cdkDropList
                 [cdkDropListData]="unsortedCharacters"
                 class="example-list"
                 (cdkDropListDropped)="drop($event)">
-                <app-list-item *ngFor="let character of unsortedCharacters" cdkDrag [character]="character"></app-list-item>
-                </div>
+                    <mat-grid-tile *ngFor="let character of unsortedCharacters"  cdkDrag>
+                        <app-list-item [character]="character"></app-list-item>
+                    </mat-grid-tile>
+                </mat-grid-list>
                 <button mat-button matTooltip="Add Character" (click)="clickAddCharacter()"><mat-icon>add</mat-icon></button>
               </mat-expansion-panel>
         

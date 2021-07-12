@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListItemComponent implements OnInit {
 
   @Input() character: string;
+  @Input() hideLink: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
