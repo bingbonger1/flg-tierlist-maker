@@ -38,13 +38,17 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListContainerComponent } from './list-container/list-container.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ListItemComponent } from './list-container/list-item/list-item.component';
+import { DialogColorComponent } from './list-container/dialog/dialog-color/dialog-color.component';
+import { DialogTiernameComponent } from './list-container/dialog/dialog-tiername/dialog-tiername.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListContainerComponent,
     ToolbarComponent,
-    ListItemComponent
+    ListItemComponent,
+    DialogColorComponent,
+    DialogTiernameComponent
   ],
   imports: [
     BrowserModule,

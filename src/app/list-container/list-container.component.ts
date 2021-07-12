@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Tier } from '../classes/tier';
 import defaultCharacters from '../../assets/characters.json';
+import {DialogColorComponent} from './dialog/dialog-color/dialog-color.component'
+import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.component'
 
 @Component({
   selector: 'app-list-container',
@@ -12,16 +15,16 @@ export class ListContainerComponent implements OnInit {
 
   gridBreakpoint = 1;
   tiers = [
-    new Tier("S tier"),
-    new Tier("A tier"),
-    new Tier("B tier"),
-    new Tier("C tier"),
-    new Tier("D tier"),
-    new Tier("F tier")
+    new Tier("S tier", "#88F"),
+    new Tier("A tier", "#88F"),
+    new Tier("B tier", "#88F"),
+    new Tier("C tier", "#88F"),
+    new Tier("D tier", "#88F"),
+    new Tier("F tier", "#88F")
   ]
   unsortedCharacters = defaultCharacters;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.setGridBreakPoint(window.innerWidth);
@@ -53,7 +56,7 @@ export class ListContainerComponent implements OnInit {
   clickAddTier(){
     var tierName = prompt("Tier name?", 'X Tier')
     if (tierName != null){
-      this.tiers[this.tiers.length] = new Tier(tierName)
+      this.tiers[this.tiers.length] = new Tier(tierName, "#FF6")
     }
   }
 
@@ -70,5 +73,52 @@ export class ListContainerComponent implements OnInit {
   addCharacter(characterName: string){
     this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
   }
+
+  clickChangeColorButton(tier: Tier){
+
+    tier.colorHex = this.openColorDialog(tier.colorHex);
+  }
+
+  clickChangeTierNameButton(tier: Tier){
+    tier.name = this.openTierNameDialog(tier.name);
+  }
+
+  openColorDialog(currentColor: string): string{
+    return prompt("New color (in hex)",currentColor);
+    /*
+    TODO: figure out how to properly pass data to these dialog things
+    var newColor = currentColor;
+    const dialogRef = this.dialog.open(DialogColorComponent, {
+      width: '250px',
+      data: {color: newColor}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      newColor = result;
+    });
+    return newColor;
+    */
+  }
+
+  openTierNameDialog(currentName: string): string{
+    return prompt("New name?",currentName);
+    /*
+    var newName = currentName;
+    const dialogRef = this.dialog.open(DialogTiernameComponent, {
+      width: '250px',
+      data: {newName}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      newName = result;
+      console.debug('The dialog was closed: '+newName);
+    });
+    return newName;
+    */
+  }
+
+
 
 }
