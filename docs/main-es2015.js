@@ -545,11 +545,13 @@ function ListContainerComponent_div_17_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ListContainerComponent_div_17_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const tier_r2 = ctx.$implicit; const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r10.clickMoveTierUpButton(tier_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "expand_less");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "button", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ListContainerComponent_div_17_Template_button_click_20_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const tier_r2 = ctx.$implicit; const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r11.clickMoveTierDownButton(tier_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "expand_more");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -573,9 +575,9 @@ function ListContainerComponent_mat_grid_tile_23_Template(rf, ctx) { if (rf & 1)
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-list-item", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const character_r10 = ctx.$implicit;
+    const character_r12 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("character", character_r10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("character", character_r12);
 } }
 class ListContainerComponent {
     constructor(dialog) {
@@ -629,6 +631,12 @@ class ListContainerComponent {
             alert("Invalid character name.");
         }
     }
+    clickMoveTierUpButton(tier) {
+        this.moveTier(tier, true);
+    }
+    clickMoveTierDownButton(tier) {
+        this.moveTier(tier, false);
+    }
     addCharacter(characterName) {
         this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
     }
@@ -643,6 +651,23 @@ class ListContainerComponent {
         for (let characterName of tier.characters) {
             this.unsortedCharacters.push(characterName);
         }
+    }
+    moveTier(tier, upwards) {
+        //by "upwards" we mean the position, not the number
+        let index = this.tiers.indexOf(tier);
+        //this *should* not happen, but since indexOf does have a return for bad data, we'll catch it anyway
+        if (index < 0) {
+            console.error("Tier: " + tier + " isn't actually in the list!");
+            return;
+        }
+        //check to see if we're not trying to move to an invalid position
+        if ((upwards && index < 1) || (!upwards && index == this.tiers.length - 1))
+            return;
+        //but we're all clear now, let's move our thing
+        let newIndex = upwards ? index - 1 : index + 1;
+        let oldTier = this.tiers[newIndex];
+        this.tiers[newIndex] = tier;
+        this.tiers[index] = oldTier;
     }
     openColorDialog(currentColor) {
         return prompt("New color (in hex)", currentColor);
@@ -680,7 +705,7 @@ class ListContainerComponent {
     }
 }
 ListContainerComponent.ɵfac = function ListContainerComponent_Factory(t) { return new (t || ListContainerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"])); };
-ListContainerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ListContainerComponent, selectors: [["app-list-container"]], decls: 27, vars: 5, consts: [["mat-button", "", "matTooltip", "Add Tier", 3, "click"], ["mat-button", "", "matTooltip", "Reset Everything", "disabled", ""], ["mat-button", "", "matTooltip", "Save", "disabled", ""], ["mat-button", "", "matTooltip", "Load", "disabled", ""], ["mat-button", "", "matTooltip", "Export to image", "disabled", ""], ["cdkDropListGroup", ""], ["class", "tier-container", 4, "ngFor", "ngForOf"], [3, "expanded"], ["rowHeight", "1:1", "cdkDropList", "", 1, "example-list", 3, "cols", "cdkDropListData", "resize", "cdkDropListDropped"], ["cdkDrag", "", 4, "ngFor", "ngForOf"], ["mat-button", "", "matTooltip", "Add Character", 3, "click"], [1, "tier-container"], [1, "tier-column", "tier-column-name"], ["title", ""], [1, "tier-column"], [1, "tier-column", "tier-column-tier"], ["cdkDropList", "", "rowHeight", "1:1", 1, "tier-list", 3, "cols", "cdkDropListData", "cdkDropListDropped"], ["mat-button", "", "matTooltip", "Rename", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Change color", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Delete", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move up", "disabled", "", "color", "warn"], ["mat-button", "", "matTooltip", "Move down", "disabled", "", "color", "warn"], ["cdkDrag", ""], [3, "character", "hideLink"], [3, "character"]], template: function ListContainerComponent_Template(rf, ctx) { if (rf & 1) {
+ListContainerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ListContainerComponent, selectors: [["app-list-container"]], decls: 27, vars: 5, consts: [["mat-button", "", "matTooltip", "Add Tier", 3, "click"], ["mat-button", "", "matTooltip", "Reset Everything", "disabled", ""], ["mat-button", "", "matTooltip", "Save", "disabled", ""], ["mat-button", "", "matTooltip", "Load", "disabled", ""], ["mat-button", "", "matTooltip", "Export to image", "disabled", ""], ["cdkDropListGroup", ""], ["class", "tier-container", 4, "ngFor", "ngForOf"], [3, "expanded"], ["rowHeight", "1:1", "cdkDropList", "", 1, "example-list", 3, "cols", "cdkDropListData", "resize", "cdkDropListDropped"], ["cdkDrag", "", 4, "ngFor", "ngForOf"], ["mat-button", "", "matTooltip", "Add Character", 3, "click"], [1, "tier-container"], [1, "tier-column", "tier-column-name"], ["title", ""], [1, "tier-column"], [1, "tier-column", "tier-column-tier"], ["cdkDropList", "", "rowHeight", "1:1", 1, "tier-list", 3, "cols", "cdkDropListData", "cdkDropListDropped"], ["mat-button", "", "matTooltip", "Rename", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Change color", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Delete", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move up", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move down", "color", "warn", 3, "click"], ["cdkDrag", ""], [3, "character", "hideLink"], [3, "character"]], template: function ListContainerComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ListContainerComponent_Template_button_click_1_listener() { return ctx.clickAddTier(); });

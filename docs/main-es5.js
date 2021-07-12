@@ -1004,6 +1004,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "button", 20);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ListContainerComponent_div_17_Template_button_click_17_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6);
+
+          var tier_r2 = ctx.$implicit;
+
+          var ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          return ctx_r10.clickMoveTierUpButton(tier_r2);
+        });
+
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "mat-icon");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "expand_less");
@@ -1013,6 +1023,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "button", 21);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ListContainerComponent_div_17_Template_button_click_20_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6);
+
+          var tier_r2 = ctx.$implicit;
+
+          var ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          return ctx_r11.clickMoveTierDownButton(tier_r2);
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-icon");
 
@@ -1060,11 +1080,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var character_r10 = ctx.$implicit;
+        var character_r12 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("character", character_r10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("character", character_r12);
       }
     }
 
@@ -1124,6 +1144,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
+        key: "clickMoveTierUpButton",
+        value: function clickMoveTierUpButton(tier) {
+          this.moveTier(tier, true);
+        }
+      }, {
+        key: "clickMoveTierDownButton",
+        value: function clickMoveTierDownButton(tier) {
+          this.moveTier(tier, false);
+        }
+      }, {
         key: "addCharacter",
         value: function addCharacter(characterName) {
           this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
@@ -1156,6 +1186,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } finally {
             _iterator.f();
           }
+        }
+      }, {
+        key: "moveTier",
+        value: function moveTier(tier, upwards) {
+          //by "upwards" we mean the position, not the number
+          var index = this.tiers.indexOf(tier); //this *should* not happen, but since indexOf does have a return for bad data, we'll catch it anyway
+
+          if (index < 0) {
+            console.error("Tier: " + tier + " isn't actually in the list!");
+            return;
+          } //check to see if we're not trying to move to an invalid position
+
+
+          if (upwards && index < 1 || !upwards && index == this.tiers.length - 1) return; //but we're all clear now, let's move our thing
+
+          var newIndex = upwards ? index - 1 : index + 1;
+          var oldTier = this.tiers[newIndex];
+          this.tiers[newIndex] = tier;
+          this.tiers[index] = oldTier;
         }
       }, {
         key: "openColorDialog",
@@ -1206,7 +1255,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-list-container"]],
       decls: 27,
       vars: 5,
-      consts: [["mat-button", "", "matTooltip", "Add Tier", 3, "click"], ["mat-button", "", "matTooltip", "Reset Everything", "disabled", ""], ["mat-button", "", "matTooltip", "Save", "disabled", ""], ["mat-button", "", "matTooltip", "Load", "disabled", ""], ["mat-button", "", "matTooltip", "Export to image", "disabled", ""], ["cdkDropListGroup", ""], ["class", "tier-container", 4, "ngFor", "ngForOf"], [3, "expanded"], ["rowHeight", "1:1", "cdkDropList", "", 1, "example-list", 3, "cols", "cdkDropListData", "resize", "cdkDropListDropped"], ["cdkDrag", "", 4, "ngFor", "ngForOf"], ["mat-button", "", "matTooltip", "Add Character", 3, "click"], [1, "tier-container"], [1, "tier-column", "tier-column-name"], ["title", ""], [1, "tier-column"], [1, "tier-column", "tier-column-tier"], ["cdkDropList", "", "rowHeight", "1:1", 1, "tier-list", 3, "cols", "cdkDropListData", "cdkDropListDropped"], ["mat-button", "", "matTooltip", "Rename", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Change color", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Delete", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move up", "disabled", "", "color", "warn"], ["mat-button", "", "matTooltip", "Move down", "disabled", "", "color", "warn"], ["cdkDrag", ""], [3, "character", "hideLink"], [3, "character"]],
+      consts: [["mat-button", "", "matTooltip", "Add Tier", 3, "click"], ["mat-button", "", "matTooltip", "Reset Everything", "disabled", ""], ["mat-button", "", "matTooltip", "Save", "disabled", ""], ["mat-button", "", "matTooltip", "Load", "disabled", ""], ["mat-button", "", "matTooltip", "Export to image", "disabled", ""], ["cdkDropListGroup", ""], ["class", "tier-container", 4, "ngFor", "ngForOf"], [3, "expanded"], ["rowHeight", "1:1", "cdkDropList", "", 1, "example-list", 3, "cols", "cdkDropListData", "resize", "cdkDropListDropped"], ["cdkDrag", "", 4, "ngFor", "ngForOf"], ["mat-button", "", "matTooltip", "Add Character", 3, "click"], [1, "tier-container"], [1, "tier-column", "tier-column-name"], ["title", ""], [1, "tier-column"], [1, "tier-column", "tier-column-tier"], ["cdkDropList", "", "rowHeight", "1:1", 1, "tier-list", 3, "cols", "cdkDropListData", "cdkDropListDropped"], ["mat-button", "", "matTooltip", "Rename", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Change color", "color", "accent", 3, "click"], ["mat-button", "", "matTooltip", "Delete", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move up", "color", "warn", 3, "click"], ["mat-button", "", "matTooltip", "Move down", "color", "warn", 3, "click"], ["cdkDrag", ""], [3, "character", "hideLink"], [3, "character"]],
       template: function ListContainerComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");

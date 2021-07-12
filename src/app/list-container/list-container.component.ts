@@ -70,6 +70,14 @@ export class ListContainerComponent implements OnInit {
     }
   }
 
+  clickMoveTierUpButton(tier: Tier){
+    this.moveTier(tier,true);
+  }
+
+  clickMoveTierDownButton(tier: Tier){
+    this.moveTier(tier,false);
+  }
+
   addCharacter(characterName: string){
     this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
   }
@@ -88,6 +96,23 @@ export class ListContainerComponent implements OnInit {
     for(let characterName of tier.characters){
       this.unsortedCharacters.push(characterName);
     }
+  }
+
+  moveTier(tier: Tier, upwards: boolean){
+    //by "upwards" we mean the position, not the number
+    let index: number = this.tiers.indexOf(tier);
+    //this *should* not happen, but since indexOf does have a return for bad data, we'll catch it anyway
+    if(index < 0) {
+      console.error("Tier: "+tier+" isn't actually in the list!");
+      return;
+    }
+    //check to see if we're not trying to move to an invalid position
+    if((upwards&&index < 1)||(!upwards&&index == this.tiers.length-1)) return;
+    //but we're all clear now, let's move our thing
+    let newIndex = upwards ? index - 1 : index + 1
+    let oldTier = this.tiers[newIndex];
+    this.tiers[newIndex] = tier;
+    this.tiers[index] = oldTier;
   }
 
   openColorDialog(currentColor: string): string{
