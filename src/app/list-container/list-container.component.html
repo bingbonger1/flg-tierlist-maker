@@ -7,7 +7,7 @@
     </button>
     <button mat-button 
     matTooltip="Reset Everything" 
-    disabled>
+    (click)="clickResetButton()">>
         <mat-icon> layers_clear</mat-icon>
     </button>
     <button mat-button 
@@ -24,6 +24,11 @@
     matTooltip="Export to image" 
     disabled>
         <mat-icon>image</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Caleb Button" 
+    disabled>
+        <mat-icon>cloud</mat-icon>
     </button>
     <div cdkDropListGroup>
         <div class="tier-container" *ngFor="let tier of tiers">

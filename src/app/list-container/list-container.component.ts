@@ -13,25 +13,31 @@ import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.
 })
 export class ListContainerComponent implements OnInit {
 
-  gridBreakpoint = 1;
-  tiers = [
-    new Tier("S tier", "#88F"),
-    new Tier("A tier", "#88F"),
-    new Tier("B tier", "#88F"),
-    new Tier("C tier", "#88F"),
-    new Tier("D tier", "#88F"),
-    new Tier("F tier", "#88F")
-  ]
-  unsortedCharacters = defaultCharacters;
+  gridBreakpoint = 1
+  tiers: Tier[];
+  unsortedCharacters: string[];
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.setGridBreakPoint(window.innerWidth);
+    this.initializeData();
   }
 
   onResize(event) {
     this.setGridBreakPoint(event.target.innerWidth);
+  }
+
+  initializeData(){
+    this.tiers = [
+      new Tier("S tier", "#88F"),
+      new Tier("A tier", "#88F"),
+      new Tier("B tier", "#88F"),
+      new Tier("C tier", "#88F"),
+      new Tier("D tier", "#88F"),
+      new Tier("F tier", "#88F")
+    ]
+    this.unsortedCharacters = Object.assign([],defaultCharacters);
   }
 
   setGridBreakPoint(windowSize){
@@ -51,6 +57,10 @@ export class ListContainerComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  clickResetButton(){
+    this.initializeData();
   }
 
   clickAddTier(){
@@ -116,7 +126,7 @@ export class ListContainerComponent implements OnInit {
   }
 
   openColorDialog(currentColor: string): string{
-    return prompt("New color (in hex)",currentColor);
+    return prompt("New color in hex. (this is temporary because the dialog is busted.",currentColor);
     /*
     TODO: figure out how to properly pass data to these dialog things
     var newColor = currentColor;
