@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Angular Material Components
+import { DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -36,16 +37,19 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListContainerComponent } from './list-container/list-container.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ListItemComponent } from './list-container/list-item/list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListContainerComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    DragDropModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,

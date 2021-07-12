@@ -1,15 +1,46 @@
 <div>
 
+    <button mat-button matTooltip="Add Tier" (click)="clickAddTier()"><mat-icon>add</mat-icon></button>
+    <div cdkDropListGroup>
+        <div class="example-container" *ngFor="let tier of tiers">
+          <h2>{{tier.name}}</h2>
+      
+          <div
+            cdkDropList
+            [cdkDropListData]="tier.characters"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <app-list-item *ngFor="let character of tier.characters" cdkDrag [character]="character"></app-list-item>
+          </div>
+        </div>
+      
+        <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Unsorted Characters
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div
+                cdkDropList
+                [cdkDropListData]="unsortedCharacters"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <app-list-item *ngFor="let character of unsortedCharacters" cdkDrag [character]="character"></app-list-item>
+                </div>
+                <button mat-button matTooltip="Add Character" (click)="clickAddCharacter()"><mat-icon>add</mat-icon></button>
+              </mat-expansion-panel>
+        
 
-    <!--Unsorted-->
-    <h2>Unsorted</h2>
+      </div>
+      
+    <!--
     <mat-grid-list cols="10" rowHeight="1:1" cdkDropList>
 
         <mat-grid-tile class="characterCard" 
         *ngFor="let character of unsortedCharacters" 
         cdkDrag >
             <mat-card >
-            <!--<mat-card-subtitle>{{character}}</mat-card-subtitle>-->
+
             <div class="characterCardPfp" [style.background]="'url(https://static.f-list.net/images/avatar/'+character.toLowerCase().replaceAll(' ','%20')+'.png)'"
             matTooltip="{{character}}"
             matTooltipPosition="above" >
@@ -23,4 +54,5 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
+-->
 </div>
