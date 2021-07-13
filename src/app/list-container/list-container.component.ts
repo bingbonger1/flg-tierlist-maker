@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Tier } from '../classes/tier';
 import defaultCharacters from '../../assets/characters.json';
 import {DialogColorComponent} from './dialog/dialog-color/dialog-color.component'
 import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.component'
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-list-container',
@@ -13,6 +14,9 @@ import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.
 })
 export class ListContainerComponent implements OnInit {
 
+  @ViewChild('tierlist') screen: ElementRef;
+  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('downloadLink') downloadLink: ElementRef;
   gridBreakpoint = 1
   tiers: Tier[];
   unsortedCharacters: string[];
@@ -38,6 +42,7 @@ export class ListContainerComponent implements OnInit {
       new Tier("F tier", "#ff7f7f")
     ]
     this.unsortedCharacters = Object.assign([],defaultCharacters);
+    //this.tiers[0].characters = Object.assign([],defaultCharacters);
   }
 
   setGridBreakPoint(windowSize){
@@ -64,6 +69,15 @@ export class ListContainerComponent implements OnInit {
 
   clickResetButton(){
     this.initializeData();
+  }
+
+  downloadImage(){
+    html2canvas(this.screen.nativeElement,{logging: true, useCORS: true, allowTaint: false}).then(canvas => {
+      this.canvas.nativeElement.src = canvas.toDataURL();
+      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+      this.downloadLink.nativeElement.download = 'flg-tierlist-'+Date.now()+".png";
+      this.downloadLink.nativeElement.click();
+    });
   }
 
   clickAddTier(){

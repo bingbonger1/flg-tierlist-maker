@@ -24,7 +24,7 @@
     </button>
     <button mat-flat-button 
     matTooltip="Export to image" 
-    disabled>
+    (click)="downloadImage()">
         <mat-icon>image</mat-icon>
     </button>
     <button mat-flat-button 
@@ -49,6 +49,7 @@
                     (cdkDropListDropped)="drop($event)">
                         <mat-grid-tile *ngFor="let character of tier.characters"  cdkDrag>
                             <div class="tier-item">
+                                <!--<img src="https://static.f-list.net/images/avatar/{{character.toLowerCase()}}.png"-->
                                 <img src="https://static.f-list.net/images/avatar/{{character.toLowerCase()}}.png"
                                 class="tier-card-image" 
                                 matTooltip="{{character}}"
@@ -142,4 +143,9 @@
         </mat-grid-tile>
     </mat-grid-list>
 -->
+<!--For the html2canvas methods-->
+<div id="download">
+    <img #canvas>
+    <a #downloadLink></a>
+  </div>
 </div>
