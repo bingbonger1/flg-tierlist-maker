@@ -30,21 +30,22 @@ export class ListContainerComponent implements OnInit {
 
   initializeData(){
     this.tiers = [
-      new Tier("S tier", "#88F"),
-      new Tier("A tier", "#88F"),
-      new Tier("B tier", "#88F"),
-      new Tier("C tier", "#88F"),
-      new Tier("D tier", "#88F"),
-      new Tier("F tier", "#88F")
+      new Tier("S tier", "#7fffff"),
+      new Tier("A tier", "#7fff7f"),
+      new Tier("B tier", "#bfff7f"),
+      new Tier("C tier", "#ffff7f"),
+      new Tier("D tier", "#ffbf7f"),
+      new Tier("F tier", "#ff7f7f")
     ]
     this.unsortedCharacters = Object.assign([],defaultCharacters);
   }
 
   setGridBreakPoint(windowSize){
     //This is ugly as fuck, but apparently gives us the fastest performance in every browser except Internet Explorer, but they can go fuck themselves. You're on 4chan, you don't use that
+    //TODO give the unsorted bin a different breakpoint
     if(windowSize <= 1000) this.gridBreakpoint = 3; else
     if(windowSize <= 1500) this.gridBreakpoint = 9;
-    else this.gridBreakpoint = 15;
+    else this.gridBreakpoint = 6;
 
   }
 
