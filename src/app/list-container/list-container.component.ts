@@ -6,6 +6,7 @@ import defaultCharacters from '../../assets/characters.json';
 import {DialogColorComponent} from './dialog/dialog-color/dialog-color.component'
 import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.component'
 import html2canvas from 'html2canvas';
+import { TierCharacter } from '../classes/tier-character';
 
 @Component({
   selector: 'app-list-container',
@@ -19,7 +20,7 @@ export class ListContainerComponent implements OnInit {
   @ViewChild('downloadLink') downloadLink: ElementRef;
   gridBreakpoint = 1
   tiers: Tier[];
-  unsortedCharacters: string[];
+  unsortedCharacters: TierCharacter[];
 
   constructor(public dialog: MatDialog) { }
 
@@ -41,8 +42,10 @@ export class ListContainerComponent implements OnInit {
       new Tier("D tier", "#ffbf7f"),
       new Tier("F tier", "#ff7f7f")
     ]
-    this.unsortedCharacters = Object.assign([],defaultCharacters);
-    //this.tiers[0].characters = Object.assign([],defaultCharacters);
+    this.unsortedCharacters = [];
+    for(let characterName of defaultCharacters){
+      this.unsortedCharacters.push(new TierCharacter(characterName,"https://static.f-list.net/images/avatar/"+characterName.toLowerCase()+".png"))
+    }
   }
 
   setGridBreakPoint(windowSize){
@@ -113,7 +116,7 @@ export class ListContainerComponent implements OnInit {
   }
 
   addCharacter(characterName: string){
-    this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
+    this.unsortedCharacters[this.unsortedCharacters.length] = new TierCharacter(characterName,"https://static.f-list.net/images/avatar/"+characterName.toLowerCase()+".png");
   }
 
   clickChangeTierButton(tier: Tier){
@@ -133,10 +136,10 @@ export class ListContainerComponent implements OnInit {
 
   clickDeleteTierButton(tier: Tier){
     this.tiers.splice(this.tiers.indexOf(tier),1);
-    for(let characterName of tier.characters){
-      this.unsortedCharacters.push(characterName);
-      this.unsortedCharacters.sort();
+    for(let character of tier.characters){
+      this.unsortedCharacters.push(character);
     }
+    this.unsortedCharacters.sort();
   }
 
   moveTier(tier: Tier, upwards: boolean){
