@@ -41,6 +41,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ListItemComponent } from './list-container/list-item/list-item.component';
 import { DialogColorComponent } from './list-container/dialog/dialog-color/dialog-color.component';
 import { DialogTiernameComponent } from './list-container/dialog/dialog-tiername/dialog-tiername.component';
+import { DialogAddCharacterComponent } from './list-container/dialog/dialog-add-character/dialog-add-character.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DialogTiernameComponent } from './list-container/dialog/dialog-tiername
     ToolbarComponent,
     ListItemComponent,
     DialogColorComponent,
-    DialogTiernameComponent
+    DialogTiernameComponent,
+    DialogAddCharacterComponent
   ],
   imports: [
     BrowserModule,

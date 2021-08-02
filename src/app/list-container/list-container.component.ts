@@ -7,6 +7,7 @@ import {DialogColorComponent} from './dialog/dialog-color/dialog-color.component
 import {DialogTiernameComponent} from './dialog/dialog-tiername/dialog-tiername.component'
 import html2canvas from 'html2canvas';
 import { TierCharacter } from '../classes/tier-character';
+import { DialogAddCharacterComponent } from './dialog/dialog-add-character/dialog-add-character.component';
 
 @Component({
   selector: 'app-list-container',
@@ -44,7 +45,7 @@ export class ListContainerComponent implements OnInit {
     ]
     this.unsortedCharacters = [];
     for(let characterName of defaultCharacters){
-      this.unsortedCharacters.push(new TierCharacter(characterName,"https://static.f-list.net/images/avatar/"+characterName.toLowerCase()+".png"))
+      this.unsortedCharacters.push(new TierCharacter(characterName,"assets/avatars/"+characterName+".png"))
     }
   }
 
@@ -98,6 +99,23 @@ export class ListContainerComponent implements OnInit {
   }
 
   clickAddCharacter(){
+    const dialogRef = this.dialog.open(DialogAddCharacterComponent, {
+      width: '650px',
+      //data: {name: "X Tier",
+      //      color: "#ffff7f"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined){
+        console.debug(result)
+        this.unsortedCharacters[this.unsortedCharacters.length] = new TierCharacter(result.name,result.profilePicURL);
+        //this.tiers[this.tiers.length] = new Tier(result.name, result.color)
+      }
+      else{
+        console.debug("Dialog yielded no result.")
+      }
+    });   
+    /*
     var characterName = prompt("Character name?", '')
     if (characterName != null || characterName.length > 2){
       this.addCharacter(characterName);
@@ -105,6 +123,7 @@ export class ListContainerComponent implements OnInit {
     else{
       alert("Invalid character name.");
     }
+    */
   }
 
   clickMoveTierUpButton(tier: Tier){
@@ -115,9 +134,6 @@ export class ListContainerComponent implements OnInit {
     this.moveTier(tier,false);
   }
 
-  addCharacter(characterName: string){
-    this.unsortedCharacters[this.unsortedCharacters.length] = new TierCharacter(characterName,"https://static.f-list.net/images/avatar/"+characterName.toLowerCase()+".png");
-  }
 
   clickChangeTierButton(tier: Tier){
     const dialogRef = this.dialog.open(DialogTiernameComponent, {
