@@ -81,10 +81,17 @@ export class ListContainerComponent implements OnInit {
   }
 
   clickAddTier(){
-    var tierName = prompt("Tier name?", 'X Tier')
-    if (tierName != null){
-      this.tiers[this.tiers.length] = new Tier(tierName, "#FF6")
-    }
+    const dialogRef = this.dialog.open(DialogTiernameComponent, {
+      width: '250px',
+      data: {name: "X Tier",
+            color: "#ffff7f"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined){
+        this.tiers[this.tiers.length] = new Tier(result.name, result.color)
+      }
+    });   
   }
 
   clickAddCharacter(){
@@ -121,19 +128,7 @@ export class ListContainerComponent implements OnInit {
         tier.name = result.name;
         tier.colorHex = result.color;
       }
-    });
-    /*
-    if(data != undefined){
-      console.debug("New tier info");
-      console.debug(data);
-      tier.name = data.name;
-      tier.colorHex = data.color;
-    }
-    else {
-      console.debug("No changes were made to tier as data was undefined (pressed no).")
-    }
-    */
-    
+    });   
   }
 
   clickDeleteTierButton(tier: Tier){
@@ -160,26 +155,5 @@ export class ListContainerComponent implements OnInit {
     this.tiers[newIndex] = tier;
     this.tiers[index] = oldTier;
   }
-
-  openColorDialog(currentColor: string): string{
-    //return prompt("New color in hex. (this is temporary because the dialog is busted.",currentColor);
-    
-    //TODO: figure out how to properly pass data to these dialog things
-    var newColor = currentColor;
-    const dialogRef = this.dialog.open(DialogColorComponent, {
-      width: '250px',
-      data: {color: newColor}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      newColor = result;
-    });
-    return newColor;
-    
-  }
-
-
-
 
 }
