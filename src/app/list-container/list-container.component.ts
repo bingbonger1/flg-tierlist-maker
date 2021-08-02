@@ -109,13 +109,31 @@ export class ListContainerComponent implements OnInit {
     this.unsortedCharacters[this.unsortedCharacters.length] = characterName;
   }
 
-  clickChangeColorButton(tier: Tier){
+  clickChangeTierButton(tier: Tier){
+    const dialogRef = this.dialog.open(DialogTiernameComponent, {
+      width: '250px',
+      data: {name: tier.name,
+            color: tier.colorHex}
+    });
 
-    tier.colorHex = this.openColorDialog(tier.colorHex);
-  }
-
-  clickChangeTierNameButton(tier: Tier){
-    tier.name = this.openTierNameDialog(tier.name);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined){
+        tier.name = result.name;
+        tier.colorHex = result.color;
+      }
+    });
+    /*
+    if(data != undefined){
+      console.debug("New tier info");
+      console.debug(data);
+      tier.name = data.name;
+      tier.colorHex = data.color;
+    }
+    else {
+      console.debug("No changes were made to tier as data was undefined (pressed no).")
+    }
+    */
+    
   }
 
   clickDeleteTierButton(tier: Tier){
@@ -144,9 +162,9 @@ export class ListContainerComponent implements OnInit {
   }
 
   openColorDialog(currentColor: string): string{
-    return prompt("New color in hex. (this is temporary because the dialog is busted.",currentColor);
-    /*
-    TODO: figure out how to properly pass data to these dialog things
+    //return prompt("New color in hex. (this is temporary because the dialog is busted.",currentColor);
+    
+    //TODO: figure out how to properly pass data to these dialog things
     var newColor = currentColor;
     const dialogRef = this.dialog.open(DialogColorComponent, {
       width: '250px',
@@ -158,26 +176,9 @@ export class ListContainerComponent implements OnInit {
       newColor = result;
     });
     return newColor;
-    */
+    
   }
 
-  openTierNameDialog(currentName: string): string{
-    return prompt("New name?",currentName);
-    /*
-    var newName = currentName;
-    const dialogRef = this.dialog.open(DialogTiernameComponent, {
-      width: '250px',
-      data: {newName}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      newName = result;
-      console.debug('The dialog was closed: '+newName);
-    });
-    return newName;
-    */
-  }
 
 
 

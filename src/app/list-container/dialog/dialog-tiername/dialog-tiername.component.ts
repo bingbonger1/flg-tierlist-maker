@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { TierDialogContent } from './tier-dialog-content';
 
 @Component({
   selector: 'app-dialog-tiername',
@@ -8,9 +9,10 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class DialogTiernameComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogTiernameComponent>, @Inject(MAT_DIALOG_DATA) public name: string) { }
+  constructor(public dialogRef: MatDialogRef<DialogTiernameComponent>, @Inject(MAT_DIALOG_DATA) public data: TierDialogContent) { }
 
   ngOnInit(): void {
+    
   }
 
   onNoClick(): void {

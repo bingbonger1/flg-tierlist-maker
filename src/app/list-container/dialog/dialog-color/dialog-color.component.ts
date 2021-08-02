@@ -14,6 +14,6 @@ export class DialogColorComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.colorHex);
   }
 }
