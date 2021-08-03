@@ -1,6 +1,6 @@
 # /flg/ Tiermaker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Live version can be found [here](https://fatcatclient.github.io/flg-tierlist-maker/).
 
 ## Adding new names
 
