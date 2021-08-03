@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Fetched user avatars
+/src/assets/avatars
 # compiled output
 /dist
 /tmp
