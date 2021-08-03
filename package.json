@@ -6,7 +6,7 @@
     "start": "node fetch-pictures.js && ng serve",
     "build": "node fetch-pictures.js && ng build",
     "fetch-pictures": "node fetch-pictures.js",
-    "git-build": "node fetch-pictures.js && ng build --output-path docs --base-href /flg-tierlist-maker/",
+    "deploy": "node fetch-pictures.js && ng build --prod --base-href /flg-tierlist-maker/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
