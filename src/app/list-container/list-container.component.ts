@@ -58,16 +58,16 @@ export class ListContainerComponent implements OnInit {
 
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<TierCharacter[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      event.container.data.sort();
+      event.container.data.sort((a, b) => (a.name > b.name) ? 1 : -1);
     } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
-      event.container.data.sort();
+      event.container.data.sort((a, b) => (a.name > b.name) ? 1 : -1);
     }
   }
 
@@ -155,7 +155,7 @@ export class ListContainerComponent implements OnInit {
     for(let character of tier.characters){
       this.unsortedCharacters.push(character);
     }
-    this.unsortedCharacters.sort();
+    this.unsortedCharacters.sort((a, b) => (a.name > b.name) ? 1 : -1);
   }
 
   moveTier(tier: Tier, upwards: boolean){

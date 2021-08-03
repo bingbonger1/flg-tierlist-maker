@@ -40,12 +40,14 @@
                 <h2 title>{{tier.name}}</h2>                
             </div>
             <div class="tier-column tier-column-tier">
+                <!--[cols]="gridBreakpoint"-->
                 <mat-grid-list
-                    [cols]="gridBreakpoint"
+                    cols="11"
                     cdkDropList
-                    rowHeight="2:1"
+                    rowHeight="1:1"
                     [cdkDropListData]="tier.characters"
                     class="tier-list"
+                    [ngStyle]="{'min-height':tier.characters.length > 0 ? '0px' : '60px' }"
                     (cdkDropListDropped)="drop($event)">
                         <mat-grid-tile *ngFor="let character of tier.characters"  cdkDrag>
                             <div class="tier-item">
@@ -100,7 +102,7 @@
                         <mat-grid-tile *ngFor="let character of unsortedCharacters"  cdkDrag>
                             <div class="tier-item">
                                 <img src="{{character.profilePicURL}}"
-                                class="tier-card-image" 
+                                class="unsorted-card-image" 
                                 matTooltip="{{character.name}}"
                                 matTooltipPosition="above" />
                                 <a mat-icon-button href="https://www.f-list.net/c/{{character.name}}" target="_blank">
@@ -115,7 +117,7 @@
                 </mat-expansion-panel>
             </div>
       </div>
-<!--For the html2canvas methods-->
+<!--For the html2canvas methods. This will remain invisible, but the tierlist HTML will be dumped to the canvas element, where it will then be saved.-->
 <div id="download">
     <img #canvas>
     <a #downloadLink></a>

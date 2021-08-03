@@ -8,12 +8,12 @@
   
   .tier-list {
     border: solid 1px #ccc;
-    min-height: 60px;
     background: white;
     border-radius: 4px;
     overflow: hidden;
     display: block;
     width: 100%;
+    min-width: 715px;
   }
   
   
@@ -45,6 +45,7 @@
   .list-container-column{
     display: inline-block;
     width:50%;
+    max-width: 1200px;
     vertical-align: top;
   }
 
@@ -74,6 +75,9 @@
   }
 .tier-card-image {
   width: 65px;
+}
+.unsorted-card-image {
+  width: 50px;
 }
 
 .tier-item:not(.cdk-drag-placeholder) {
