@@ -1,36 +1,32 @@
-<div>
+<div style="margin: auto;">
 
     <button mat-flat-button 
-    matTooltip="Add Tier" 
-    color="accent"
-    (click)="clickAddTier()">
-        <mat-icon>add</mat-icon>
-    </button>
-    <button mat-flat-button 
-    matTooltip="Reset Everything" 
-    (click)="clickResetButton()"
-    color="warn">
-        <mat-icon> layers_clear</mat-icon>
-    </button>
-    <button mat-flat-button 
-    matTooltip="Save" 
-    disabled>
-        <mat-icon> save</mat-icon>
-    </button>
-    <button mat-flat-button 
-    matTooltip="Load" 
-    disabled>
-        <mat-icon> folder_open</mat-icon>
-    </button>
-    <button mat-flat-button 
-    matTooltip="Export to image" 
+    matTooltip="Export image" 
+    color="primary"
     (click)="downloadImage()">
         <mat-icon>image</mat-icon>
     </button>
     <button mat-flat-button 
-    matTooltip="Caleb Button" 
+    matTooltip="Add tier" 
+    color="accent"
+    (click)="clickAddTier()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Reset everything" 
+    (click)="clickResetButton()"
+    color="warn">
+        <mat-icon> layers_clear</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Save" 
     disabled>
-        <mat-icon>cloud</mat-icon>
+        <mat-icon> save</mat-icon>
+    </button>
+    <button mat-button 
+    matTooltip="Load" 
+    disabled>
+        <mat-icon> folder_open</mat-icon>
     </button>
     <mat-divider></mat-divider>
     <div cdkDropListGroup>
@@ -60,23 +56,23 @@
                         </mat-grid-tile>
                 </mat-grid-list>
                 <div class="tier-list-buttons" data-html2canvas-ignore="true">
-                    <button mat-button 
+                    <button mat-icon-button 
                     matTooltip="Edit tier" 
                     (click)="clickChangeTierButton(tier)">
                         <mat-icon>build</mat-icon>
                     </button>
-                    <button mat-button 
+                    <button mat-icon-button 
                     matTooltip="Delete" 
                     (click)="clickDeleteTierButton(tier)"
                     color="warn">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-button 
+                    <button mat-icon-button 
                     matTooltip="Move up" 
                     (click)="clickMoveTierUpButton(tier)">
                         <mat-icon>expand_less</mat-icon>
                     </button>
-                    <button mat-button 
+                    <button mat-icon-button 
                     matTooltip="Move down" 
                     (click)="clickMoveTierDownButton(tier)">
                     <mat-icon>expand_more</mat-icon>
@@ -113,7 +109,7 @@
                             </div>
                         </mat-grid-tile>
                     </mat-grid-list>
-                    <button mat-flat-button matTooltip="Add Character" (click)="clickAddCharacter()" color="accent">
+                    <button mat-fab style="float: right" matTooltip="Add Character" (click)="clickAddCharacter()" color="accent">
                         <mat-icon>add</mat-icon>
                     </button>
                 </mat-expansion-panel>

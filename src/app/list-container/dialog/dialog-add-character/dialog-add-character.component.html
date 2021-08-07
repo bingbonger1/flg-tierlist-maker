@@ -1,15 +1,17 @@
 <h1 mat-dialog-title>Add a character</h1>
+<img class="character-dialog-pic" src="{{characterData.profilePicURL}}" *ngIf="characterData.profilePicURL !== undefined && characterData.profilePicURL.length > 1" />
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="characterData.name" cdkFocusInitial>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="characterData.name" cdkFocusInitial>
   </mat-form-field>
-        <input #pfpInput hidden="true" type="file" onclick="this.value=null" (change)="pfpInputChange($event)" accept=".png"/>
-        <button mat-flat-button (click)="pfpInput.click()">Select Profile Picture</button>
+    <input #pfpInput hidden="true" type="file" onclick="this.value=null" (change)="pfpInputChange($event)" accept=".png"/>
+    <button mat-icon-button (click)="pfpInput.click()">	<mat-icon>add_photo_alternate</mat-icon></button>
+  
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-flat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-flat-button [mat-dialog-close]="characterData" [disabled]="characterData.name == undefined || characterData.name.length < 2 || characterData.profilePicURL == undefined || characterData.profilePicURL.length < 1" color="primary" >Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="characterData" [disabled]="characterData.name == undefined || characterData.name.length < 2 || characterData.profilePicURL == undefined || characterData.profilePicURL.length < 1" color="primary" >Add</button>
 </div>
