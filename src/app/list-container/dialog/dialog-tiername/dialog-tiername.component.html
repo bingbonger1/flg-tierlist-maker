@@ -4,10 +4,55 @@
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="data.name" cdkFocusInitial>
   </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Colour</mat-label>
-    <input matInput type="color" [(ngModel)]="data.color">
-  </mat-form-field>
+  <mat-divider></mat-divider>
+  <mat-radio-group
+        aria-labelledby="tier-dialog-radio-group-label"
+        class="tier-dialog-radio-group"
+        [(ngModel)]="data.color">
+        <mat-radio-button class="tier-dialog-radio-button" value="#7fff7f">
+          <mat-icon style="color: #7fff7f">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#bfff7f">
+          <mat-icon style="color: #bfff7f">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#ffff7f">
+          <mat-icon style="color: #ffff7f">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#ffbf7f">
+          <mat-icon style="color: #ffbf7f">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#ff7f7f">
+          <mat-icon style="color: #ff7f7f">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#7fffff">
+          <mat-icon style="color: #7fffff">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#7fbfff">
+          <mat-icon style="color: #7fbfff">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#7f7fff">
+          <mat-icon style="color: #7f7fff">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#ff7fff">
+          <mat-icon style="color: #ff7fff">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#bf7fbf">
+          <mat-icon style="color: #bf7fbf">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#3b3b3b">
+          <mat-icon style="color: #3b3b3b">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#858585">
+          <mat-icon style="color: #858585">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#cfcfcf">
+          <mat-icon style="color: #cfcfcf">lens</mat-icon>
+        </mat-radio-button>
+        <mat-radio-button class="tier-dialog-radio-button" value="#f7f7f7">
+          <mat-icon style="color: #f7f7f7">lens</mat-icon>
+        </mat-radio-button>
+
+  </mat-radio-group>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
