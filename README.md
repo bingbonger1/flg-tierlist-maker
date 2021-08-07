@@ -10,13 +10,13 @@ To prevent abuse, newly created accounts won't be able to contribute for a full 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
 Run `npm run build` to build the project. Use the `--prod` flag for a production build. For deployment to Github Pages, the `npm run deploy` command is used. Both of these commands will pre-fetch the user avatars before generating the build artifacts, both of which will be stored in the `dist/` directory. 
 
-Pre-fetching is needed, as Javascript (whether compiled or raw) won't allow manipulation of external sources from webservers that block (or don't allow) our domain via CORS headers.
+Pre-fetching is needed, as Javascript (whether compiled or raw) won't allow manipulation of external sources from webservers that block (or don't allow) our domain via CORS headers, which we need in order to export parts of the page with user avatars.
 
 ## Further help
 
