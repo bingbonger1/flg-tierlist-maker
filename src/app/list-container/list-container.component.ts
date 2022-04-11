@@ -36,11 +36,12 @@ export class ListContainerComponent implements OnInit {
 
   initializeData(){
     this.tiers = [
-      new Tier("Simping hard for", "#7fffff"),
-      new Tier("Wanna play with a lot", "#7fff7f"),
-      new Tier("Wanna play with", "#bfff7f"),
-      new Tier("Interesting", "#ffff7f"),
-      new Tier("Wanna play, but there's problems", "#ffbf7f")
+      new Tier("S-Tier", "#7fffff"),
+      new Tier("A-Tier", "#7fff7f"),
+      new Tier("B-Tier", "#bfff7f"),
+      new Tier("C-Tier", "#ffff7f"),
+      new Tier("D-Tier", "#ffbf7f"),
+      new Tier("F-Tier", "#ff7f7f"),
     ]
     this.unsortedCharacters = [];
     for(let characterName of defaultCharacters){
